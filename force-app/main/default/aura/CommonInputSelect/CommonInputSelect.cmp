@@ -1,0 +1,78 @@
+<aura:component>
+    
+    <aura:attribute name="label" 
+                    type="String" 
+                    default=""/>
+    <aura:attribute name="value" 
+                    type="String" 
+                    default=""/>
+    <aura:attribute name="errors" 
+                    type="List" 
+                    default="" />
+    <aura:attribute name="changeId" 
+                    type="String" 
+                    default="" />
+    <aura:attribute name="iterationData" 
+                    type="String" 
+                    default="" />
+    <aura:attribute name="multiple" 
+                    type="Boolean" 
+                    default="false" />
+    
+    <!-- CSS Attributes for InputSelect and InputSelectOption -->
+ 
+    <aura:attribute name="labelClass" 
+                    type="String" 
+                    default="" />
+    <aura:attribute name="class" 
+                    type="String" 
+                    default="" />
+    <aura:attribute name="inputSelectOptionClass" 
+                    type="String" 
+                    default="" />
+    
+    <!-- CSS Attributes End -->
+    
+    <!-- Event Registration to call Outer Component's Controller Method on InputSelectChange -->
+    
+    <aura:registerEvent name="CommonInputEvent" 
+                        type="c:CommonInputSelectEvent" />
+    
+    <!-- Event Registration End -->
+    
+    <ui:inputSelect aura:id="{!v.id}" 
+                    errors="{!v.errors}" 
+                    change="{!c.fireChangeEvent}" 
+                    class="{!v.class}" 
+                    label="{!v.label}" 
+                    labelClass="{!v.labelClass}" 
+                    multiple="{!v.multiple}"
+                    value="{!v.value}">
+
+        <aura:iteration items="{!v.iterationData}" 
+                        var="CIobj">
+            
+	<!-- Check to set a value in input select -->
+            
+            <aura:if isTrue="{!equals(v.value,CIobj)}">
+
+                <ui:inputSelectOption class="{!v.inputSelectOptionClass}" 
+                                          text="{!CIobj}" 
+                                          label="{!CIobj}"
+                                          value="true"/>
+
+                <aura:set attribute="else">
+
+                    <ui:inputSelectOption class="{!v.inputSelectOptionClass}" 
+                                          text="{!CIobj}" 
+                                          label="{!CIobj}"
+                                          value="false"/>                
+                </aura:set>
+
+            </aura:if>
+            
+        </aura:iteration>
+        
+    </ui:inputSelect>
+    
+</aura:component>

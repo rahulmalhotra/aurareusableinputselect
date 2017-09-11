@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Event template">
+	<!-- Event Id is used to call different functions when event is fired from different Component Call -->
+    <aura:attribute name="id" type="String" />
+</aura:event>

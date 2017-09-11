@@ -1,0 +1,39 @@
+<aura:component>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <ltng:require styles="/resource/lightning/assets/styles/salesforce-lightning-design-system.min.css"  />
+    
+    <!-- Aura Init Handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<!-- Common Input Select Dummy Data -->
+    <aura:attribute name="fruits" type="String[]" />
+    <aura:attribute name="vegetables" type="String[]" />
+
+    <!-- Aura Handler for Common Component -->
+    <aura:handler name="CommonInputEvent" event="c:CommonInputSelectEvent" action="{!c.handleCommonInputEvent}" />
+
+    <!-- Aura Methods for Common Component -->
+    <aura:method name="getFruit" action="{!c.getFruit}" description="Fruits" />
+    <aura:method name="getVegetable" action="{!c.getVegetable}" description="Vegetables" />
+
+    <!-- Common Input Select Components -->
+    <div class="slds-container--center slds-container--large">
+
+                <br />
+                <div class="slds-form-element__row">
+                    <h1>Common Input Select Component Demo</h1>
+                </div>
+        
+                <div class="slds-form-element__row">
+                    <c:CommonInputSelect labelClass="slds-form-element__label" class="slds-input" aura:id="myFruits" changeId="1" label="Fruits" value="Mango" iterationData="{!v.fruits}" />
+                </div>
+        
+              	<br />
+                <div class="slds-form-element__row">
+                    <c:CommonInputSelect labelClass="slds-form-element__label" class="slds-input" aura:id="myVegetables" changeId="2" label="Vegetables" value="Brinjal" iterationData="{!v.vegetables}" />
+                </div>
+    </div>
+
+</aura:component>
